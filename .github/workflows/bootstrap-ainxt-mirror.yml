@@ -33,7 +33,8 @@ jobs:
           git fetch --depth=1 upstream main
           git switch -c mirror/npci-ainxt-enterprise
           git rm -rf --ignore-unmatch .
-          git checkout upstream/main -- .
+          # The GitHub Actions token cannot push changes to workflow files; copy upstream workflows separately after the branch exists.
+          git checkout upstream/main -- . ':!.github/workflows/**'
           mkdir -p .github/workflows
           cp /tmp/bootstrap-ainxt-mirror.yml .github/workflows/bootstrap-ainxt-mirror.yml
           cat > MIRROR-INFO.md <<'EOF'
