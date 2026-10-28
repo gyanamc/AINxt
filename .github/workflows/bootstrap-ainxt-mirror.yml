@@ -51,7 +51,8 @@ jobs:
           EOF
           git add -A
           git commit -m "chore: mirror NPCI AiNxt Enterprise source"
-          git push origin HEAD:refs/heads/mirror/npci-ainxt-enterprise
+          # This is a dedicated mirror branch created for this task. Replace its stale bootstrap history.
+          git push --force origin HEAD:refs/heads/mirror/npci-ainxt-enterprise
 
       - name: Open pull request
         env:
